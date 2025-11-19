@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -18,9 +19,354 @@
     --foreground: #ededed;
   }
 }
+html,
+body,
+#root {
+  height: 100%;
+  margin: unset;
+}
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+.scene-container {
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  left: 35%;
+  top: 6rem;
+  z-index: 10;
+}
+.banner {
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+ 
+  
+}
+.slider {
+  position: absolute;
+  width: 200px;
+  height: 180px;
+  top: 10%;
+  left: calc(50% - 100px);
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+  animation: autoRun 20s linear infinite;
+  z-index: 99;
+  
+}
+.item {
+  position: absolute;
+  border-radius: 3rem;
+  inset: 0 0 0 0;
+
+  transform:
+  rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+  translateZ(550px);
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 3rem;
+
+    object-fit: cover;
+  }
+}
+.content {
+  position: absolute;
+  bottom: -3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1400px;
+  height: max-content;
+  padding: 100px;
+  color: whitesmoke;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 999;
+  h1 {
+    font-size: 6em;
+    line-height: 1em;
+    font-family: var(--font-orbitron);
+  }
+  
+  
+}
+.model {
+  width: 100%;
+  height: 75vh;
+  position: absolute;
+  bottom: 250px;
+  left: 0;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: top center;
+  z-index: -1;
+  transform: perspective(1000px);
+}
+@keyframes autoRun{
+  from {
+    transform: perspective(1000px) rotateX(-5deg) rotateY(0deg);
+  }
+  to {
+    transform: perspective(1000px) rotateX(-5deg) rotateY(360deg);
+
+  }
+}
+
+.buttons {
+  border: 1px #04d9ff solid;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  color: #04d9ff;
+  background-color: #056d7f;
+  cursor: pointer;
+
+}
+.buttons:active {
+  transform: scale(0.95);
+}
+.buttons.selected {
+  background-color: aqua;
+}
+.buttons.green {
+
+  background-color: green;
+}
+
+
+.color-button {
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.color-swatch:focus,
+.color-swatch:active {
+
+  background-color: aqua;
+}
+
+.color-swatch.selected {
+  background-color: aqua;
+}
+
+.ui-elements {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem;
+  width: 100%;
+  position: absolute;
+  bottom: 1rem;
+
+}
+
+.ui-container {
+  position: absolute;
+  display: flex;
+  min-width: 300px;
+  min-height: 100px;
+  right: 0;
+  top: 1.5rem;
+  z-index: 999;
+  flex-direction: column;
+}
+
+@media (max-width: 320px) {
+  .slider {
+    width: 130px;
+    height: 120px;
+    left: calc(50% - 70px);
+    
+  }
+  .scene-container {
+    width: 250px;
+    height: 250px;
+    right: 2rem;
+    top: 4rem;
+    left: unset;
+   
+  }
+  .item {
+    transform:
+    rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+    translateZ(200px);  
+  }
+
+  .content {
+    max-width: 740px;
+    flex-direction: column;
+    align-items: center;
+    padding: 80px;
+
+    h1 {
+      font-size: 2em;
+      line-height: 1em;
+      font-family: var(--font-orbitron);
+    }
+    
+  }
+  .ui-container {
+    top: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  
+}
+@media (min-width: 321px) and (max-width: 375px) {
+  .slider {
+    width: 130px;
+    height: 120px;
+    left: calc(50% - 70px);
+    
+  }
+  .scene-container {
+    width: 250px;
+    height: 250px;
+    right: 3rem;
+    top: 4rem;
+    left: unset;
+   
+  }
+  .item {
+    transform:
+    rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+    translateZ(180px);  }
+    .content {
+      max-width: 740px;
+      flex-direction: column;
+      align-items: center;
+      padding: 80px;
+  
+      h1 {
+        font-size: 2.5em;
+        line-height: 1em;
+        font-family: var(--font-orbitron);
+      }
+      
+    }
+    .ui-container {
+      top: -1rem;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+  
+}
+@media (min-width: 376px) and (max-width: 425px) {
+  .slider {
+    width: 130px;
+    height: 120px;
+    left: calc(50% - 65px);
+    
+  }
+  .ui-container {
+    top: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .scene-container {
+    width: 250px;
+    height: 250px;
+    right: 5rem;
+    top: 4rem;
+    left: unset;
+   
+  }
+  .content {
+    max-width: 740px;
+    flex-direction: column;
+    align-items: center;
+    padding: 80px;
+
+    h1 {
+      font-size: 2.5em;
+      line-height: 1em;
+      font-family: var(--font-orbitron);
+    }
+    
+  }
+  .item {
+    transform:
+    rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+    translateZ(200px);  
+  }
+
+  
+}
+@media (min-width: 426px) and (max-width: 768px) {
+  
+  .item {
+    transform:
+    rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+    translateZ(300px);  
+  }
+
+
+  .scene-container {
+    width: 350px;
+    height: 350px;
+    right: 12rem;
+    top: 4rem;
+    left: unset;
+   
+  }
+  .content {
+    max-width: 740px;
+    flex-direction: row;
+    align-items: unset;
+    padding: 80px;
+
+    h1 {
+      font-size: 3em;
+      line-height: 1em;
+      font-family: var(--font-orbitron);
+    }
+    
+  }
+
+  
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  
+  .item {
+    transform:
+    rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+    translateZ(400px);  
+  }
+ 
+  .scene-container {
+    left: 30%;
+    top: 3rem;
+  }
+  .content {
+    max-width: 1000px;
+    flex-direction: row;
+    align-items: center;
+    h1 {
+      font-size: 3em;
+      line-height: 1em;
+      font-family: var(--font-orbitron);
+    }
+    
+  }
+
+  
 }
